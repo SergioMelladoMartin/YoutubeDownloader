@@ -12,7 +12,7 @@ You will also need to install the `yt-dlp` command-line utility. You can find in
 ## Installing
 Clone the repository to your local machine:
 ```
-git clone https://github.com/your-username/youtube-downloader.git
+git clone https://github.com/SergioMelladoMartin/youtube-downloader.git
 ```
 
 Change into the project directory:
