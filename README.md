@@ -38,6 +38,5 @@ The downloaded file will be saved to the `C:\Users\%USERNAME%\Downloads` directo
 - [yt-dlp](https://github.com/trizen/yt-dlp) - The command-line utility for downloading YouTube videos
 
 
-
 ## License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.

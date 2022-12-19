@@ -10,23 +10,20 @@ import (
 const (
 	AudioFlag  = "--audio"
 	VideoFlag  = "--video"
-	M4AFormat  = "bestaudio[ext=m4a]"
-	MP3Format  = "best[ext=mp3]"
-	BestFormat = "best"
-	MP4Format  = "bestvideo[ext=mp4]+bestaudio[ext=m4a]"
-	MP4Format2 = "best[ext=mp4]"
+	MP3Format  = "bestaudio[ext=m4a]/best[ext=mp3]/best"
+	MP4Format  = "bestvideo[ext=m4a]/best[ext=mp4]/best"
 	FileFormat = "C:\\Users\\%USERNAME%\\Downloads\\%(title)s.%(ext)s"
 )
 
 func executeCommand(url, flag string) error {
 	var cmd *exec.Cmd
 	switch flag {
-	case AudioFlag:
-		cmd = exec.Command("yt-dlp", url, "-f", M4AFormat+"/"+MP3Format+"/"+BestFormat, "-o", FileFormat)
-	case VideoFlag:
-		cmd = exec.Command("yt-dlp", url, "-f", MP4Format+"/"+MP4Format2+"/"+BestFormat, "-o", FileFormat)
-	default:
-		return fmt.Errorf("unexpected flag: %s", flag)
+	  case AudioFlag:
+      cmd = exec.Command("yt-dlp", url, "-f", MP3Format,  "-o", FileFormat)
+    case VideoFlag:
+		  cmd = exec.Command("yt-dlp", url, "-f", MP4Format, "-o", FileFormat)
+	  default:
+		  return fmt.Errorf("unexpected flag: %s", flag)
 	}
 
 	stdout, err := cmd.StdoutPipe()
