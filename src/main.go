@@ -12,27 +12,27 @@ const (
 	VideoFlag  = "--video"
 	MP3Format  = "bestaudio[ext=m4a]/best[ext=mp3]/best"
 	MP4Format  = "bestvideo[ext=m4a]/best[ext=mp4]/best"
-	FileFormat = "C:\\Users\\%USERNAME%\\Downloads\\%(title)s.%(ext)s"
+	File = "C:\\Users\\%USERNAME%\\Downloads\\%(title)s.%(ext)s"
 )
 
 func executeCommand(url, flag string) error {
 	var cmd *exec.Cmd
 	switch flag {
 	  case AudioFlag:
-      cmd = exec.Command("yt-dlp", url, "-f", MP3Format,  "-o", FileFormat)
+      cmd = exec.Command("yt-dlp", url, "-f", MP3Format, "-o", File)
     case VideoFlag:
-		  cmd = exec.Command("yt-dlp", url, "-f", MP4Format, "-o", FileFormat)
+		  cmd = exec.Command("yt-dlp", url, "-f", MP4Format, "-o", File)
 	  default:
 		  return fmt.Errorf("unexpected flag: %s", flag)
 	}
 
 	stdout, err := cmd.StdoutPipe()
 	if err != nil {
-		return fmt.Errorf("Error al obtener la tubería de salida: %s\n", err)
+		return fmt.Errorf("Error while creating StdoutPipe for Cmd: %s\n", err)
 	}
 
 	if err := cmd.Start(); err != nil {
-		return fmt.Errorf("Error al iniciar el comando: %s\n", err)
+		return fmt.Errorf("Error while starting Cmd: %s\n", err)
 	}
 
 	buf := make([]byte, 1024)
